@@ -4,3 +4,4 @@ Componentes:
 - Mateus Luis Nogueira de Lima
 - Ryan Gabriel Viturino da Costa
 - Lian Guilherme Silva Medeiros
+- Israelly Lorranny Almeida Nogueira
