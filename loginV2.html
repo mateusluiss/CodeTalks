@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>CodeTalks - Login</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <script
+      src="https://kit.fontawesome.com/02eeb2401b.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <main
+      class="w-screen h-screen flex items-center justify-center px-6"
+      style="
+        background: radial-gradient(
+          circle at top left,
+          #1a0505 0%,
+          #090909 45%,
+          #030303 100%
+        );
+      "
+    >
+      <div
+        class="p-10 w-full max-w-md shadow-2xl rounded-3xl flex flex-col justify-center"
+        style="
+          background: rgba(255, 255, 255, 0.03);
+          backdrop-filter: blur(24px);
+          border: 1px solid rgba(255, 255, 255, 0.06);
+        "
+      >
+        <div>
+          <h1
+            class="text-4xl font-bold leading-tight"
+            style="color: white; font-family: &quot;Syne&quot;, sans-serif"
+          >
+            Bem vindo,
+            <span class="text-red-400">Coder!</span>
+          </h1>
+
+          <p
+            class="mt-3 text-sm leading-relaxed"
+            style="
+              color: rgba(255, 255, 255, 0.42);
+              font-family: &quot;Syne&quot;, sans-serif;
+            "
+          >
+            Conheça desenvolvedores, expanda sua rede de contatos e converse
+            sobre tecnologia no CodeTalks.
+          </p>
+        </div>
+
+        <div class="flex flex-col mt-10 gap-4">
+          <input
+            id="email"
+            class="p-3.5 ps-5 rounded-2xl w-full focus:outline-none transition-all"
+            style="
+              background: rgba(255, 255, 255, 0.04);
+              border: 1px solid rgba(255, 255, 255, 0.08);
+              color: rgba(255, 255, 255, 0.9);
+              font-family: &quot;Syne&quot;, sans-serif;
+            "
+            type="text"
+            placeholder="Usuário"
+          />
+
+          <input
+            id="senha"
+            class="p-3.5 ps-5 rounded-2xl w-full focus:outline-none transition-all"
+            style="
+              background: rgba(255, 255, 255, 0.04);
+              border: 1px solid rgba(255, 255, 255, 0.08);
+              color: rgba(255, 255, 255, 0.9);
+              font-family: &quot;Syne&quot;, sans-serif;
+            "
+            type="password"
+            placeholder="Senha"
+          />
+
+          <button
+            onclick="fazerLogin()"
+            class="p-3.5 bg-gradient-to-br from-red-500 to-rose-700 rounded-2xl w-full text-center text-white font-semibold mt-4 hover:scale-[1.02] active:scale-[0.99] cursor-pointer transition-all duration-200"
+            style="font-family: &quot;Syne&quot;, sans-serif"
+          >
+            Entrar
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <style>
+      ::placeholder {
+        color: rgba(255, 255, 255, 0.25);
+      }
+
+      input:focus {
+        border-color: rgba(239, 68, 68, 0.4);
+        box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.08);
+      }
+    </style>
+
+    <!-- NÃO MEXE AQUI -->
+    <script>
+      const usuarios = [
+        {
+          usuario: "mimmarcelo",
+          senha: "Teste123",
+          nome: "Prof. Marcelo",
+        },
+        {
+          usuario: "mateusdev13",
+          senha: "123456",
+          nome: "Mateus Luis",
+        },
+        {
+          usuario: "lianecsdee",
+          senha: "adorocarregarlivros",
+          nome: "Lian Guilherme",
+        },
+        {
+          usuario: "ryanviturino",
+          senha: "lolzinho",
+          nome: "Ryan Gabriel",
+        },
+        {
+          usuario: "Marcelo_O_NOBRE",
+          senha: "caboderede",
+          nome: "Marcelo Nobre",
+        },
+        {
+          usuario: "Delly",
+          senha: "dellynog",
+          nome: "Israelly Lorrany",
+        },
+      ];
+
+      function fazerLogin() {
+        const usuarioDigitado = document.getElementById("email").value.trim();
+
+        const senhaDigitada = document.getElementById("senha").value.trim();
+
+        const usuarioEncontrado = usuarios.find(
+          (u) => u.usuario === usuarioDigitado && u.senha === senhaDigitada,
+        );
+
+        if (!usuarioEncontrado) {
+          alert("Usuário ou senha inválidos.");
+          return;
+        }
+
+        localStorage.setItem(
+          "usuarioLogado",
+          JSON.stringify(usuarioEncontrado),
+        );
+
+        window.location.href = "index.html";
+      }
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          fazerLogin();
+        }
+      });
+
+      if (localStorage.getItem("usuarioLogado")) {
+        window.location.href = "index.html";
+      }
+    </script>
+  </body>
+</html>
